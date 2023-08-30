@@ -1,0 +1,19 @@
+{
+    "name": "mdalaminbey/paddle",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MdAlAminBey\\Paddle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MD AL AMIN",
+            "email": "mdalaminbey@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    }
+}

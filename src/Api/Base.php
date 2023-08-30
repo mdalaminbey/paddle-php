@@ -1,0 +1,60 @@
+<?php
+
+namespace MdAlAminBey\Paddle\Api;
+
+use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
+
+class Base
+{
+    protected array $config;
+    private Client $client;
+
+    public function __construct()
+    {
+        $this->config = [
+            'base_uri' => 'https://sandbox-api.paddle.com/',
+            'headers'  => [
+                'Authorization'  => 'Bearer 47c847b2c90b2fa58bb112d87feea0a1c57cc2fc0cda83eafa',
+                'Paddle-Version' => 1
+            ]
+        ];
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function api_client(): Client
+    {
+        if ( empty( $this->client ) ) {
+            $this->client = new Client( $this->config );
+        }
+
+        return $this->client;
+    }
+
+    /**
+     * @param int $accepted_status_code
+     * @param ResponseInterface $response
+     */
+    protected function response( ResponseInterface $response, int $accepted_status_code )
+    {
+        $status_code = $response->getStatusCode();
+        $body        = $response->getBody()->getContents();
+        if ( $accepted_status_code !== $status_code ) {
+            throw new Exception( $body, $status_code );
+        }
+        return json_decode( $body, true );
+    }
+
+    /**
+     * @param RequestException $response
+     */
+    protected function throw_exception( RequestException $e )
+    {
+        $response = $e->getResponse();
+        throw new Exception( $response->getBody()->getContents(), $response->getStatusCode() );
+    }
+}
