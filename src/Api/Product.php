@@ -7,9 +7,6 @@ use MdAlAminBey\Paddle\DTO\ProductDTO;
 
 class Product extends Base
 {
-    /**
-     * @return mixed
-     */
     public function get()
     {
         try {

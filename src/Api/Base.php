@@ -24,7 +24,7 @@ class Base
     }
 
     /**
-     * @return mixed
+     * @return Client
      */
     protected function api_client(): Client
     {
@@ -38,6 +38,7 @@ class Base
     /**
      * @param int $accepted_status_code
      * @param ResponseInterface $response
+     * @return array
      */
     protected function response( ResponseInterface $response, int $accepted_status_code )
     {
