@@ -40,13 +40,11 @@ class Discount extends Base
     /**
      * @param DiscountDTO $dto
      */
-    public function update( DiscountDTO $dto )
+    public function update( string $discount_id, DiscountDTO $dto )
     {
         try {
-            $data = $dto->to_array();
-            unset( $data['discount_id'] );
-            $response = $this->api_client()->request( 'PATCH', "discounts/{$dto->get_discount_id()}", [
-                'json' => $data
+            $response = $this->api_client()->request( 'PATCH', "discounts/{$discount_id}", [
+                'json' => $dto->to_array()
             ] );
 
             return $this->response( $response, 200 );
@@ -58,10 +56,10 @@ class Discount extends Base
     /**
      * @param string $id
      */
-    public function get_by_id( string $id )
+    public function get_by_id( string $discount_id )
     {
         try {
-            $response = $this->api_client()->request( 'GET', "discounts/{$id}" );
+            $response = $this->api_client()->request( 'GET', "discounts/{$discount_id}" );
             return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );

@@ -40,13 +40,11 @@ class Customer extends Base
     /**
      * @param CustomerDTO $dto
      */
-    public function update( CustomerDTO $dto )
+    public function update( string $customer_id, CustomerDTO $dto )
     {
         try {
-            $data = $dto->to_array();
-            unset( $data['customer_id'] );
-            $response = $this->api_client()->request( 'PATCH', "customers/{$dto->get_customer_id()}", [
-                'json' => $data
+            $response = $this->api_client()->request( 'PATCH', "customers/{$customer_id}", [
+                'json' => $dto->to_array()
             ] );
 
             return $this->response( $response, 200 );
@@ -58,10 +56,10 @@ class Customer extends Base
     /**
      * @param string $id
      */
-    public function get_by_id( string $id )
+    public function get_by_id( string $customer_id )
     {
         try {
-            $response = $this->api_client()->request( 'GET', "customer_id/{$id}" );
+            $response = $this->api_client()->request( 'GET', "customers/{$customer_id}" );
             return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );

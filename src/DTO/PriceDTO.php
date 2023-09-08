@@ -4,7 +4,6 @@ namespace MdAlAminBey\Paddle\DTO;
 
 class PriceDTO extends Base
 {
-    private string $price_id            = '';
     private string $description         = '';
     private string $product_id          = '';
     private array $unit_price           = [];
@@ -15,22 +14,6 @@ class PriceDTO extends Base
     private array $quantity             = [];
     private string $status              = '';
     private array $custom_data          = [];
-
-    /**
-     * @return mixed
-     */
-    public function get_price_id(): string
-    {
-        return $this->price_id;
-    }
-
-    /**
-     * @param string $price_id
-     */
-    public function set_price_id( string $price_id ): void
-    {
-        $this->price_id = $price_id;
-    }
 
     /**
      * @return mixed

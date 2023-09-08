@@ -41,13 +41,11 @@ class Price extends Base
     /**
      * @param PriceDTO $dto
      */
-    public function update( PriceDTO $dto )
+    public function update( string $price_id, PriceDTO $dto )
     {
         try {
-            $data = $dto->to_array();
-            unset( $data['price_id'] );
-            $response = $this->api_client()->request( 'PATCH', "prices/{$dto->get_price_id()}", [
-                'json' => $data
+            $response = $this->api_client()->request( 'PATCH', "prices/{$price_id}", [
+                'json' => $dto->to_array()
             ] );
 
             return $this->response( $response, 200 );
@@ -59,10 +57,10 @@ class Price extends Base
     /**
      * @param string $id
      */
-    public function get_by_id( string $id )
+    public function get_by_id( string $price_id )
     {
         try {
-            $response = $this->api_client()->request( 'GET', "prices/{$id}" );
+            $response = $this->api_client()->request( 'GET', "prices/{$price_id}" );
             return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );

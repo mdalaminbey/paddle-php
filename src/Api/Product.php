@@ -38,13 +38,11 @@ class Product extends Base
     /**
      * @param ProductDTO $dto
      */
-    public function update( ProductDTO $dto )
+    public function update( string $product_id, ProductDTO $dto )
     {
         try {
-            $data = $dto->to_array();
-            unset( $data['product_id'] );
-            $response = $this->api_client()->request( 'PATCH', "products/{$dto->get_product_id()}", [
-                'json' => $data
+            $response = $this->api_client()->request( 'PATCH', "products/{$product_id}", [
+                'json' => $dto->to_array()
             ] );
 
             return $this->response( $response, 200 );
@@ -56,10 +54,10 @@ class Product extends Base
     /**
      * @param string $id
      */
-    public function get_by_id( string $id )
+    public function get_by_id( string $product_id )
     {
         try {
-            $response = $this->api_client()->request( 'GET', "products/{$id}" );
+            $response = $this->api_client()->request( 'GET', "products/{$product_id}" );
             return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );

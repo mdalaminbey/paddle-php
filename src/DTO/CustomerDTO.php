@@ -4,27 +4,10 @@ namespace MdAlAminBey\Paddle\DTO;
 
 class CustomerDTO extends Base
 {
-    private string $customer_id = '';
     private string $email       = '';
     private string $name        = '';
     private string $locale      = '';
     private string $status      = '';
-
-    /**
-     * @return mixed
-     */
-    public function get_customer_id(): string
-    {
-        return $this->customer_id;
-    }
-
-    /**
-     * @param string $customer_id
-     */
-    public function set_customer_id( string $customer_id ): void
-    {
-        $this->customer_id = $customer_id;
-    }
 
     /**
      * @return mixed

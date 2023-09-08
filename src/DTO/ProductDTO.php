@@ -4,45 +4,12 @@ namespace MdAlAminBey\Paddle\DTO;
 
 class ProductDTO extends Base
 {
-    private string $product_id   = '';
     private string $name         = '';
     private string $tax_category = '';
     private string $description  = '';
     private string $image_url    = '';
     private array $custom_data   = [];
     private string $status       = '';
-
-    /**
-     * @param string $name
-     * @param string $description
-     * @param null|string $image_url
-     * @param null|array $custom_data
-     * @param null|string $tax_category
-     */
-    public function __construct( string $name, string $description = null, string $image_url = null, array $custom_data = null, string $tax_category = "standard" )
-    {
-        $this->name         = $name;
-        $this->description  = $description;
-        $this->image_url    = $image_url;
-        $this->custom_data  = $custom_data;
-        $this->tax_category = $tax_category;
-    }
-
-    /**
-     * @return string
-     */
-    public function get_product_id()
-    {
-        return $this->product_id;
-    }
-
-    /**
-     * @param string $product_id
-     */
-    public function set_product_id( string $product_id )
-    {
-        $this->product_id = $product_id;
-    }
 
     /**
      * @return string

@@ -4,7 +4,6 @@ namespace MdAlAminBey\Paddle\DTO;
 
 class DiscountDTO extends Base
 {
-    private string $discount_id               = '';
     private string $amount                    = '';
     private string $description               = '';
     private string $type                      = '';
@@ -16,22 +15,6 @@ class DiscountDTO extends Base
     private ?int $usage_limit                 = null;
     private array $restrict_to                = [];
     private string $expires_at                = '';
-
-    /**
-     * @return string
-     */
-    public function get_discount_id(): string
-    {
-        return $this->discount_id;
-    }
-
-    /**
-     * @param string $discount_id
-     */
-    public function set_discount_id( string $discount_id ): void
-    {
-        $this->discount_id = $discount_id;
-    }
 
     /**
      * @return string
