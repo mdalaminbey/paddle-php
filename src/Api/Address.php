@@ -11,7 +11,7 @@ class Address extends Base
     /**
      * @return mixed
      */
-    public function customer_addresses( string $customer_id, ?AddressReadDTO $dto )
+    public function customer_addresses( string $customer_id, ?AddressReadDTO $dto = null )
     {
         try {
             $query_parameters = $this->dto_to_query_params( $dto );

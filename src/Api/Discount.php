@@ -11,7 +11,7 @@ class Discount extends Base
     /**
      * @return mixed
      */
-    public function get( DiscountReadDTO $dto )
+    public function get( ?DiscountReadDTO $dto = null )
     {
         try {
             $query_parameters = $this->dto_to_query_params( $dto );

@@ -11,7 +11,7 @@ class Customer extends Base
     /**
      * @return mixed
      */
-    public function get( CustomerReadDTO $dto )
+    public function get( ?CustomerReadDTO $dto = null )
     {
         try {
             $query_parameters = $this->dto_to_query_params( $dto );
