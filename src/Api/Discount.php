@@ -3,50 +3,49 @@
 namespace MdAlAminBey\Paddle\Api;
 
 use GuzzleHttp\Exception\RequestException;
-use MdAlAminBey\Paddle\DTO\PriceDTO;
-use MdAlAminBey\Paddle\DTO\PriceReadDTO;
+use MdAlAminBey\Paddle\DTO\DiscountDTO;
+use MdAlAminBey\Paddle\DTO\DiscountReadDTO;
 
-class Price extends Base
+class Discount extends Base
 {
     /**
      * @return mixed
      */
-    public function get( ?PriceReadDTO $dto = null )
+    public function get( DiscountReadDTO $dto )
     {
-        $query_parameters = $this->dto_to_query_params( $dto );
-
         try {
-            return $this->response( $this->api_client()->request( 'GET', "prices{$query_parameters}" ), 200 );
+            $query_parameters = $this->dto_to_query_params( $dto );
+            return $this->response( $this->api_client()->request( 'GET', "discounts{$query_parameters}" ), 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );
         }
     }
 
     /**
-     * @param PriceDTO $dto
+     * @param DiscountDTO $dto
      */
-    public function create( PriceDTO $dto )
+    public function create( DiscountDTO $dto )
     {
         try {
-            $response = $this->api_client()->request( 'POST', 'prices', [
+            $response = $this->api_client()->request( 'POST', 'discounts', [
                 'json' => $dto->to_array()
             ] );
 
-            return $this->response( $response, 201 );
+            return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );
         }
     }
 
     /**
-     * @param PriceDTO $dto
+     * @param DiscountDTO $dto
      */
-    public function update( PriceDTO $dto )
+    public function update( DiscountDTO $dto )
     {
         try {
             $data = $dto->to_array();
-            unset( $data['price_id'] );
-            $response = $this->api_client()->request( 'PATCH', "prices/{$dto->get_price_id()}", [
+            unset( $data['discount_id'] );
+            $response = $this->api_client()->request( 'PATCH', "discounts/{$dto->get_discount_id()}", [
                 'json' => $data
             ] );
 
@@ -62,7 +61,7 @@ class Price extends Base
     public function get_by_id( string $id )
     {
         try {
-            $response = $this->api_client()->request( 'GET', "prices/{$id}" );
+            $response = $this->api_client()->request( 'GET', "discounts/{$id}" );
             return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );

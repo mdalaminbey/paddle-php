@@ -9,7 +9,7 @@ use ReflectionObject;
  */
 abstract class Base
 {
-    function to_array()
+    public function to_array()
     {
         $reflection = new ReflectionObject( $this );
         $properties = $reflection->getProperties();

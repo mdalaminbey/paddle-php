@@ -5,6 +5,7 @@ namespace MdAlAminBey\Paddle\Api;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use MdAlAminBey\Paddle\DTO\Base as BaseDTO;
 use Psr\Http\Message\ResponseInterface;
 
 class Base
@@ -57,5 +58,24 @@ class Base
     {
         $response = $e->getResponse();
         throw new Exception( $response->getBody()->getContents(), $response->getStatusCode() );
+    }
+
+    /**
+     * @param BaseDTO $dto
+     */
+    protected function dto_to_query_params( ?BaseDTO $dto = null )
+    {
+        $query_parameters = "";
+
+        if ( $dto instanceof BaseDTO ) {
+
+            $params = http_build_query( $dto->to_array() );
+
+            if ( !empty( $params ) ) {
+                $query_parameters = "?{$params}";
+            }
+        }
+
+        return $query_parameters;
     }
 }
