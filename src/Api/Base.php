@@ -13,12 +13,21 @@ abstract class Base
     protected array $config;
     private Client $client;
 
-    public function __construct()
+    /**
+     * @param array $config
+     */
+    public function set_config( array $config )
     {
+        if ( 'live' === $config['env'] ) {
+            $base_uri = 'https://api.paddle.com/';
+        } else {
+            $base_uri = 'https://sandbox-api.paddle.com/';
+        }
+
         $this->config = [
-            'base_uri' => 'https://sandbox-api.paddle.com/',
+            'base_uri' => $base_uri,
             'headers'  => [
-                'Authorization'  => 'Bearer 47c847b2c90b2fa58bb112d87feea0a1c57cc2fc0cda83eafa',
+                'Authorization'  => "Bearer {$config['token']}",
                 'Paddle-Version' => 1
             ]
         ];
