@@ -5,6 +5,7 @@ namespace MdAlAminBey\Paddle\Api;
 use GuzzleHttp\Exception\RequestException;
 use MdAlAminBey\Paddle\DTO\PriceDTO;
 use MdAlAminBey\Paddle\DTO\PriceReadDTO;
+use MdAlAminBey\Paddle\DTO\PricingPreviewDTO;
 
 class Price extends Base
 {
@@ -61,6 +62,22 @@ class Price extends Base
     {
         try {
             $response = $this->api_client()->request( 'GET', "prices/{$price_id}" );
+            return $this->response( $response, 200 );
+        } catch ( RequestException $e ) {
+            $this->throw_exception( $e );
+        }
+    }
+
+    /**
+     * @param PricingPreviewDTO $dto
+     */
+    public function preview_prices( PricingPreviewDTO $dto )
+    {
+        try {
+            $response = $this->api_client()->request( 'POST', 'pricing-preview', [
+                'json' => $dto->to_array()
+            ] );
+
             return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );
