@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\RequestException;
 use MdAlAminBey\Paddle\DTO\Base as BaseDTO;
 use Psr\Http\Message\ResponseInterface;
 
-class Base
+abstract class Base
 {
     protected array $config;
     private Client $client;
