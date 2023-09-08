@@ -4,7 +4,7 @@ namespace MdAlAminBey\Paddle\DTO;
 
 use stdClass;
 
-class ProductDTO
+class ProductDTO extends Base
 {
     private string $product_id;
     private string $name;

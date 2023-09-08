@@ -7,6 +7,9 @@ use MdAlAminBey\Paddle\DTO\ProductDTO;
 
 class Product extends Base
 {
+    /**
+     * @return mixed
+     */
     public function get()
     {
         try {
@@ -44,9 +47,8 @@ class Product extends Base
     public function update( ProductDTO $dto )
     {
         try {
-            $response = $this->api_client()->request( 'PATCH', 'products', [
+            $response = $this->api_client()->request( 'PATCH', "products/{$dto->get_product_id()}", [
                 'json' => [
-                    'product_id'   => $dto->get_product_id(),
                     'name'         => $dto->get_name(),
                     'tax_category' => $dto->get_tax_category(),
                     'description'  => $dto->get_description(),
