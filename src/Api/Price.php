@@ -55,7 +55,7 @@ class Price extends Base
     }
 
     /**
-     * @param string $id
+     * @param string $price_id
      */
     public function get_by_id( string $price_id )
     {
