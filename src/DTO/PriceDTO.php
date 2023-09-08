@@ -4,49 +4,17 @@ namespace MdAlAminBey\Paddle\DTO;
 
 class PriceDTO extends Base
 {
-    private string $price_id;
-    private string $description;
-    private string $product_id;
-    private array $unit_price;
-    private ?array $billing_cycle;
-    private ?array $trial_period;
-    private ?string $tax_mode;
-    private array $unit_price_overrides;
-    private ?array $quantity;
-    private ?array $custom_data;
-
-    /**
-     * @param string $description
-     * @param string $product_id
-     * @param array $unit_price
-     * @param array $billing_cycle
-     * @param null|array $trial_period
-     * @param null|string $tax_mode
-     * @param array $unit_price_overrides
-     * @param array $quantity
-     * @param null|array $custom_data
-     */
-    public function __construct(
-        string $description,
-        string $product_id,
-        array $unit_price,
-        ?array $billing_cycle = null,
-        ?array $trial_period = null,
-        ?string $tax_mode = null,
-        array $unit_price_overrides = [],
-        ?array $quantity = null,
-        ?array $custom_data = null
-    ) {
-        $this->description          = $description;
-        $this->product_id           = $product_id;
-        $this->unit_price           = $unit_price;
-        $this->billing_cycle        = $billing_cycle;
-        $this->trial_period         = $trial_period;
-        $this->tax_mode             = $tax_mode;
-        $this->unit_price_overrides = $unit_price_overrides;
-        $this->quantity             = $quantity;
-        $this->custom_data          = $custom_data;
-    }
+    private string $price_id            = '';
+    private string $description         = '';
+    private string $product_id          = '';
+    private array $unit_price           = [];
+    private array $billing_cycle        = [];
+    private array $trial_period         = [];
+    private string $tax_mode            = '';
+    private array $unit_price_overrides = [];
+    private array $quantity             = [];
+    private string $status              = '';
+    private array $custom_data          = [];
 
     /**
      * @return mixed
@@ -115,7 +83,7 @@ class PriceDTO extends Base
     /**
      * @return mixed
      */
-    public function get_billing_cycle(): ?array
+    public function get_billing_cycle(): array
     {
         return $this->billing_cycle;
     }
@@ -123,7 +91,7 @@ class PriceDTO extends Base
     /**
      * @param array $billing_cycle
      */
-    public function set_billing_cycle( ?array $billing_cycle ): void
+    public function set_billing_cycle( array $billing_cycle ): void
     {
         $this->billing_cycle = $billing_cycle;
     }
@@ -131,7 +99,7 @@ class PriceDTO extends Base
     /**
      * @return mixed
      */
-    public function get_trial_period(): ?array
+    public function get_trial_period(): array
     {
         return $this->trial_period;
     }
@@ -139,7 +107,7 @@ class PriceDTO extends Base
     /**
      * @param array $trial_period
      */
-    public function set_trial_period( ?array $trial_period ): void
+    public function set_trial_period( array $trial_period ): void
     {
         $this->trial_period = $trial_period;
     }
@@ -147,7 +115,7 @@ class PriceDTO extends Base
     /**
      * @return mixed
      */
-    public function get_tax_mode(): ?string
+    public function get_tax_mode(): string
     {
         return $this->tax_mode;
     }
@@ -155,7 +123,7 @@ class PriceDTO extends Base
     /**
      * @param string $tax_mode
      */
-    public function set_tax_mode( ?string $tax_mode ): void
+    public function set_tax_mode( string $tax_mode ): void
     {
         $this->tax_mode = $tax_mode;
     }
@@ -179,7 +147,7 @@ class PriceDTO extends Base
     /**
      * @return mixed
      */
-    public function get_quantity(): ?array
+    public function get_quantity(): array
     {
         return $this->quantity;
     }
@@ -187,7 +155,7 @@ class PriceDTO extends Base
     /**
      * @param array $quantity
      */
-    public function set_quantity( ?array $quantity ): void
+    public function set_quantity( array $quantity ): void
     {
         $this->quantity = $quantity;
     }
@@ -195,7 +163,7 @@ class PriceDTO extends Base
     /**
      * @return mixed
      */
-    public function get_custom_data(): ?array
+    public function get_custom_data(): array
     {
         return $this->custom_data;
     }
@@ -203,8 +171,24 @@ class PriceDTO extends Base
     /**
      * @param array $custom_data
      */
-    public function set_custom_data( ?array $custom_data ): void
+    public function set_custom_data( array $custom_data ): void
     {
         $this->custom_data = $custom_data;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_status(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function set_status( string $status ): void
+    {
+        $this->status = $status;
     }
 }

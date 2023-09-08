@@ -26,13 +26,7 @@ class Product extends Base
     {
         try {
             $response = $this->api_client()->request( 'POST', 'products', [
-                'json' => [
-                    'name'         => $dto->get_name(),
-                    'tax_category' => $dto->get_tax_category(),
-                    'description'  => $dto->get_description(),
-                    'image_url'    => $dto->get_image_url(),
-                    'custom_data'  => $dto->get_custom_data()
-                ]
+                'json' => $dto->to_array()
             ] );
 
             return $this->response( $response, 201 );
@@ -47,15 +41,10 @@ class Product extends Base
     public function update( ProductDTO $dto )
     {
         try {
+            $data = $dto->to_array();
+            unset( $data['product_id'] );
             $response = $this->api_client()->request( 'PATCH', "products/{$dto->get_product_id()}", [
-                'json' => [
-                    'name'         => $dto->get_name(),
-                    'tax_category' => $dto->get_tax_category(),
-                    'description'  => $dto->get_description(),
-                    'image_url'    => $dto->get_image_url(),
-                    'custom_data'  => $dto->get_custom_data(),
-                    'status'       => $dto->get_status()
-                ]
+                'json' => $data
             ] );
 
             return $this->response( $response, 200 );
@@ -71,7 +60,7 @@ class Product extends Base
     {
         try {
             $response = $this->api_client()->request( 'GET', "products/{$id}" );
-            return $this->response( $response, 2000 );
+            return $this->response( $response, 200 );
         } catch ( RequestException $e ) {
             $this->throw_exception( $e );
         }

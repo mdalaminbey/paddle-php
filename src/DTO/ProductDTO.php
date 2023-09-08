@@ -2,26 +2,24 @@
 
 namespace MdAlAminBey\Paddle\DTO;
 
-use stdClass;
-
 class ProductDTO extends Base
 {
-    private string $product_id;
-    private string $name;
-    private ?string $description;
-    private ?string $image_url;
-    private ?stdClass $custom_data;
-    private string $tax_category;
-    private string $status = "active";
+    private string $product_id   = '';
+    private string $name         = '';
+    private string $tax_category = '';
+    private string $description  = '';
+    private string $image_url    = '';
+    private array $custom_data   = [];
+    private string $status       = '';
 
     /**
      * @param string $name
      * @param string $description
      * @param null|string $image_url
-     * @param null|stdClass $custom_data
+     * @param null|array $custom_data
      * @param null|string $tax_category
      */
-    public function __construct( string $name, ?string $description = null, ?string $image_url = null, ?stdClass $custom_data = null, string $tax_category = "standard" )
+    public function __construct( string $name, string $description = null, string $image_url = null, array $custom_data = null, string $tax_category = "standard" )
     {
         $this->name         = $name;
         $this->description  = $description;
@@ -31,7 +29,7 @@ class ProductDTO extends Base
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function get_product_id()
     {
@@ -47,7 +45,7 @@ class ProductDTO extends Base
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function get_name()
     {
@@ -63,55 +61,7 @@ class ProductDTO extends Base
     }
 
     /**
-     * @return mixed
-     */
-    public function get_description()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function set_description( string $description )
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function get_image_url()
-    {
-        return $this->image_url;
-    }
-
-    /**
-     * @param string $image_url
-     */
-    public function set_image_url( string $image_url )
-    {
-        $this->image_url = $image_url;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function get_custom_data()
-    {
-        return $this->custom_data;
-    }
-
-    /**
-     * @param stdClass $custom_data
-     */
-    public function set_custom_data( ?stdClass $custom_data )
-    {
-        $this->custom_data = $custom_data;
-    }
-
-    /**
-     * @return mixed
+     * @return string
      */
     public function get_tax_category()
     {
@@ -127,7 +77,55 @@ class ProductDTO extends Base
     }
 
     /**
-     * @return mixed
+     * @return string
+     */
+    public function get_description()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function set_description( string $description )
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function get_image_url()
+    {
+        return $this->image_url;
+    }
+
+    /**
+     * @param string $image_url
+     */
+    public function set_image_url( string $image_url )
+    {
+        $this->image_url = $image_url;
+    }
+
+    /**
+     * @return array
+     */
+    public function get_custom_data()
+    {
+        return $this->custom_data;
+    }
+
+    /**
+     * @param array $custom_data
+     */
+    public function set_custom_data( array $custom_data )
+    {
+        $this->custom_data = $custom_data;
+    }
+
+    /**
+     * @return string
      */
     public function get_status()
     {
