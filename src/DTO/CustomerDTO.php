@@ -4,10 +4,10 @@ namespace MdAlAminBey\Paddle\DTO;
 
 class CustomerDTO extends Base
 {
-    private string $email       = '';
-    private string $name        = '';
-    private string $locale      = '';
-    private string $status      = '';
+    private string $email  = '';
+    private string $name   = '';
+    private string $locale = '';
+    private string $status = '';
 
     /**
      * @return mixed
